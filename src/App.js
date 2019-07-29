@@ -5,7 +5,7 @@ import './App.css';
 
 class App extends Component {
   constructor(){
-    super();
+    super();  // will call on Component's built in constructor
     // the keys/id's will be called with monsters.name
     this.state = {
       monsters: [
@@ -24,6 +24,11 @@ class App extends Component {
       ]
     }
   };
+
+  componentDidMount() {
+    fetch('https://jsonplaceholder.typicode.com/users').then(response => console.log(response))
+  }
+
 
       // <h3 key = { monster.id }>  whatever here <h3>
 
