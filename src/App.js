@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { CardList } from './components/card-list/card-list.component';
-
 import './App.css';
 
 
@@ -9,9 +8,10 @@ class App extends Component {
   constructor(){
     super();  // super calls on Component's built in constructor
     this.state = {
-      monsters: []
-    }
-  };
+      monsters: [],
+      searchField: ''
+    };
+  }
 
   componentDidMount(){  
     fetch('https://jsonplaceholder.typicode.com/users') // make the api request
@@ -23,6 +23,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <input type='search' placeholder='Search Monster' onChange = {e => console.log(e.target.value)}/> 
+
         <CardList monsters={this.state.monsters} />
       </div>
     );
@@ -30,3 +32,14 @@ class App extends Component {
 }
 
 export default App;
+
+/*
+To console.log the new, updated state value:
+  onChange = {(e) => this.setState({ searchField: e.target.value}, () => console.log(this.state)
+  );
+}} 
+
+Other: 
+ onChange = {(e) => this.setState({ searchField: e.target.value})} 
+ onChange = {e => console.log(e.target)} would return just the html element  
+*/
