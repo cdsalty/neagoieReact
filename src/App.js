@@ -9,7 +9,7 @@ class App extends Component {
     super();  // super calls on Component's built in constructor
     this.state = {
       monsters: [],
-      searchField: ''
+      searchField: ""
     };
   }
 
@@ -23,8 +23,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <input type='search' placeholder='Search Monster' onChange = {e => console.log(e.target.value)}/> 
-
+        <input type='search' 
+        placeholder='Search Monster' 
+        onChange = {e => this.setState({ searchField: e.target.value }, () => console.log(this.state))} 
+        /> 
         <CardList monsters={this.state.monsters} />
       </div>
     );
@@ -40,6 +42,6 @@ To console.log the new, updated state value:
 }} 
 
 Other: 
- onChange = {(e) => this.setState({ searchField: e.target.value})} 
+ onChange = {(e) => this.setState({ searchField: e.target.value})} --- returns actual value typed
  onChange = {e => console.log(e.target)} would return just the html element  
 */
