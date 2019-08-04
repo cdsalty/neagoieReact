@@ -11,7 +11,10 @@ class App extends Component {
       monsters: [],
       searchField: ""
     };
+    this.handleChange = this.handleChange.bind(this);
   }
+
+
 
     // MAKE API REQUEST WITH LIFECYCLE METHOD
   componentDidMount(){  
@@ -19,6 +22,11 @@ class App extends Component {
     .then(response => response.json())  
     // .then(users => console.log(users)) // to see the array of of users
     .then(users => this.setState({ monsters: users}));  // will set the value of monsters listed in state above
+  }
+
+  // handleChange below; if I used a an arrow function, I would not have to bind up top which may be better.
+  handleChange(e) {
+    this.setState({ searchField: e.target.value });
   }
 
   render() {
@@ -32,7 +40,7 @@ class App extends Component {
       <div className="App">
         <SearchBox
           placeholder = 'Search Monster Here'
-          handleChange = {(e) => this.setState({ searchField: e.target.value})}
+          handleChange = {this.handleChange}
         />
         <CardList monsters = {filteredMonsters} />
       </div>
