@@ -11,7 +11,7 @@ class App extends Component {
       monsters: [],
       searchField: ""
     };
-    this.handleChange = this.handleChange.bind(this);
+    // this.handleChange = this.handleChange.bind(this);
   }
 
 
@@ -24,10 +24,19 @@ class App extends Component {
     .then(users => this.setState({ monsters: users}));  // will set the value of monsters listed in state above
   }
 
-  // handleChange below; if I used a an arrow function, I would not have to bind up top which may be better.
+  
+  // by establishin handleChange this way, I don't have to call on handleChange.bind(this);
+  handleChange = (e) => {
+    this.setState({ searchField: e.target.value });
+  }
+  /*
+  By using a fat arrow, I don't have to bind(this) up top.
+  INSTEAD OF:
   handleChange(e) {
     this.setState({ searchField: e.target.value });
   }
+  */
+
 
   render() {
   const { monsters, searchField } = this.state;
